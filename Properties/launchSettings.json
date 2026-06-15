@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "XamppMultidomainManager (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "XamppMultidomainManager (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

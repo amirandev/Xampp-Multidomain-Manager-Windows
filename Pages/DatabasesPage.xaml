@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Powered By XROW.ASIA
+  Real Life Soultions for IT World
+  Contact: amoswaper@gmail.com
+-->
+
+<Page
+    x:Class="XamppMultidomainManager.Pages.DatabasesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="12" Padding="32,32,32,8">
+            <TextBlock Text="Databases" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" />
+            <Button x:Name="AddDbBtn" Click="AddDbBtn_Click" Style="{StaticResource AccentButtonStyle}" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE710;" FontSize="12" />
+                    <TextBlock Text="Add Database" />
+                </StackPanel>
+            </Button>
+            <Button Click="PhpMyAdminBtn_Click" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE8DA;" FontSize="12" />
+                    <TextBlock Text="phpMyAdmin" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="UsersBtn" Click="UsersBtn_Click" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <FontIcon Glyph="&#xE77B;" FontSize="12" />
+                    <TextBlock Text="Users" />
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="SearchInput" PlaceholderText="Search databases..." Width="300"
+                     VerticalAlignment="Center" Margin="20,0,0,0"
+                     TextChanged="SearchInput_TextChanged" />
+        </StackPanel>
+
+        <!-- Add Database Form -->
+        <Border x:Name="AddDbPanel" Grid.Row="1" Margin="32,8,32,8" Visibility="Collapsed"
+                Style="{StaticResource CardStyle}" Padding="16">
+            <StackPanel Spacing="12">
+                <TextBlock Text="Create New Database" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                <Grid ColumnSpacing="12" RowSpacing="8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="DbNameInput" Header="Database Name" PlaceholderText="my_database" />
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="DbUserInput" Header="Database User" PlaceholderText="my_user" />
+                    <PasswordBox Grid.Row="0" Grid.Column="2" x:Name="DbPassInput" Header="Database Password" />
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal" Spacing="8">
+                        <Button x:Name="CreateDbBtn" Click="CreateDbBtn_Click" Style="{StaticResource AccentButtonStyle}">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE710;" FontSize="12" />
+                                <TextBlock Text="Create" />
+                            </StackPanel>
+                        </Button>
+                        <Button Click="CancelDbBtn_Click">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <FontIcon Glyph="&#xE711;" FontSize="12" />
+                                <TextBlock Text="Cancel" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <TextBlock x:Name="DbStatusText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+            </StackPanel>
+        </Border>
+
+        <!-- Loading Indicator -->
+        <ProgressRing x:Name="LoadingIndicator" Grid.Row="3" IsActive="False"
+                      HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <!-- Database Grid -->
+        <GridView x:Name="DatabasesGrid" Grid.Row="3" Margin="32,12,32,16" SelectionMode="None">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource CardStyle}" Width="240" Padding="16">
+                        <Grid RowSpacing="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Spacing="4">
+                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="16" />
+                                <TextBlock Text="MySQL Database" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                            </StackPanel>
+                            <Button Grid.Row="1" Click="PhpMyAdminDbBtn_Click" Margin="0,8,0,0" HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+                                    <FontIcon Glyph="&#xE8DA;" FontSize="12" />
+                                    <TextBlock Text="phpMyAdmin" />
+                                </StackPanel>
+                            </Button>
+                            <Button Grid.Row="2" Click="DeleteDbBtn_Click" HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal" Spacing="4" HorizontalAlignment="Center">
+                                    <FontIcon Glyph="&#xE74D;" FontSize="12" />
+                                    <TextBlock Text="Delete" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <!-- Empty State -->
+        <TextBlock x:Name="EmptyState" Grid.Row="3" Text="No databases found."
+                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed" />
+
+        <!-- Status Bar -->
+        <TextBlock x:Name="StatusBar" Grid.Row="4" Padding="32,8"
+                   Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+    </Grid>
+</Page>

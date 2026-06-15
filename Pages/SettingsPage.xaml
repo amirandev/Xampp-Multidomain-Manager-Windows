@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Powered By XROW.ASIA
+  Real Life Soultions for IT World
+  Contact: amoswaper@gmail.com
+-->
+
+<Page
+    x:Class="XamppMultidomainManager.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <StackPanel Spacing="16" Padding="32" MaxWidth="600">
+            <TextBlock Text="Settings" Style="{StaticResource TitleTextBlockStyle}" />
+
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="XAMPP" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                    <TextBlock Text="Path: C:\xampp" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    <TextBlock x:Name="XamppStatusText" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="How It Works" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                    <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        • Virtual host config is stored in an SQLite database and written to Apache's httpd-vhosts.conf on each apply.
+                    </TextBlock>
+                    <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        • Domain entries are managed in the Windows hosts file (C:\Windows\System32\drivers\etc\hosts) and require Administrator privileges.
+                    </TextBlock>
+                    <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        • SSL certificates are auto-generated using XAMPP's OpenSSL for HTTPS support on every domain.
+                    </TextBlock>
+                    <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        • Website root path: C:\xampp\htdocs\websites\{domain}\public
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
