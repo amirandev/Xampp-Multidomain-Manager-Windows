@@ -1,3 +1,5 @@
+<img width="1450" height="751" alt="image" src="https://github.com/user-attachments/assets/f5db6b29-ae34-4c76-a8c8-1d0615ff6c8a" />
+
 # Xampp Multidomain Manager
 
 **Powered By XROW.ASIA**  
@@ -28,6 +30,7 @@ A Windows desktop application that provides a graphical interface for managing m
 - Creates self-signed SSL certificates for HTTPS support
 - Manages Windows `hosts` file entries
 - Open domain in browser or document root in Explorer
+<img width="1432" height="741" alt="image" src="https://github.com/user-attachments/assets/f56b3d78-ccf4-4c16-9118-7509651cbe60" />
 
 ### Databases
 - List all MySQL databases
@@ -35,10 +38,14 @@ A Windows desktop application that provides a graphical interface for managing m
 - Delete databases with confirmation
 - Open phpMyAdmin globally or deep-linked to a specific database
 - MySQL user management
+<img width="1432" height="742" alt="image" src="https://github.com/user-attachments/assets/f2cd131f-93ae-42a3-a353-91c0eea5a2c1" />
+
 
 ### PHP Ini Editor
 - Load, edit, and save `php.ini` directly from the app
 - Reload from disk and save with admin privileges
+<img width="1407" height="715" alt="image" src="https://github.com/user-attachments/assets/2e04923d-04bf-404a-b5a0-d4edd30b2730" />
+
 
 ### Settings
 - Verify XAMPP installation path
