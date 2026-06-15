@@ -6,7 +6,7 @@ if %errorLevel% neq 0 (
 )
 cd /d "%~dp0"
 echo Building Release...
-"C:\Program Files\dotnet\dotnet.exe" publish -c Release -p:PublishTrimmed=false
+"C:\Program Files\dotnet\dotnet.exe" publish -c Release -p:PublishTrimmed=false -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 if %errorLevel% neq 0 (
     echo Build failed!
     pause

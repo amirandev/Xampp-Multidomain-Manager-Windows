@@ -32,6 +32,7 @@ public partial class App : Application
 
     public App()
     {
+        Environment.SetEnvironmentVariable("MICROSOFT_WINDOWSAPPRUNTIME_BASE_DIRECTORY", AppContext.BaseDirectory);
         InitializeComponent();
         AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
         AppDomain.CurrentDomain.UnhandledException += (_, e) => Logger.Log(e.ExceptionObject as Exception ?? new Exception("Unknown unhandled error"));
