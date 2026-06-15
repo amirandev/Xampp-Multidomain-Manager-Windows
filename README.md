@@ -2,8 +2,6 @@
 
 A Windows desktop application that provides a graphical interface for managing multiple local domains (virtual hosts) on a XAMPP installation. No more manually editing Apache config files, hosts file, or MySQL databases — everything is handled through a clean WinUI 3 dashboard.
 
-<img width="1450" height="751" alt="image" src="https://github.com/user-attachments/assets/f5db6b29-ae34-4c76-a8c8-1d0615ff6c8a" />
-
 ## Requirements
 
 - **Windows 10** (version 1809 or later) or **Windows 11**
@@ -27,7 +25,6 @@ A Windows desktop application that provides a graphical interface for managing m
 - Creates self-signed SSL certificates for HTTPS support
 - Manages Windows `hosts` file entries
 - Open domain in browser or document root in Explorer
-<img width="1432" height="741" alt="image" src="https://github.com/user-attachments/assets/f56b3d78-ccf4-4c16-9118-7509651cbe60" />
 
 ### Databases
 - List all MySQL databases
@@ -35,14 +32,10 @@ A Windows desktop application that provides a graphical interface for managing m
 - Delete databases with confirmation
 - Open phpMyAdmin globally or deep-linked to a specific database
 - MySQL user management
-<img width="1432" height="742" alt="image" src="https://github.com/user-attachments/assets/f2cd131f-93ae-42a3-a353-91c0eea5a2c1" />
-
 
 ### PHP Ini Editor
 - Load, edit, and save `php.ini` directly from the app
 - Reload from disk and save with admin privileges
-<img width="1407" height="715" alt="image" src="https://github.com/user-attachments/assets/2e04923d-04bf-404a-b5a0-d4edd30b2730" />
-
 
 ### Settings
 - Verify XAMPP installation path
@@ -69,7 +62,60 @@ All operations run with full administrator privileges to allow writing to system
 | Database (local) | **SQLite** via `Microsoft.Data.Sqlite` |
 | Database (remote) | **MySQL** via XAMPP's bundled CLI tools |
 | SSL | **OpenSSL** (bundled with XAMPP) |
-| Packaging | MSIX (Windows App SDK) |
+| Packaging | Single-file self-extracting (WinUI unpackaged) |
+
+## Scripts
+
+### `build-installable.bat`
+Builds the project as a single-file distributable `.exe` and copies it to `build-installable\`. If the Windows SDK is installed, it also signs the executable with a self-signed certificate.
+
+```bat
+.\build-installable.bat
+```
+
+Output: `build-installable\XamppMultidomainManager.exe`
+
+### `install.bat`
+Builds and installs the app to `C:\Program Files\XamppMultidomainManager\`, creates Start Menu and Desktop shortcuts.
+
+```bat
+.\install.bat
+```
+
+### `run-build.bat`
+Builds the Release version, copies the output to `build\`, and launches the app.
+
+```bat
+.\run-build.bat
+```
+
+### `rundebug.bat`
+Builds and runs the Debug version (same as `dotnet run`) with auto-elevation.
+
+```bat
+.\rundebug.bat
+```
+
+### `run.bat`
+Legacy script — same as `rundebug.bat`.
+
+### `generate_icons.py`
+Python script that generates all icon sizes (`16px.ico` through `96px.ico`) and app assets from `256px.ico` on a white background.
+
+```bash
+pip install Pillow
+python generate_icons.py
+```
+
+## First-Run Setup
+
+When you launch the app for the first time (from the distributable `.exe`), it detects it's not installed and shows a setup wizard that:
+
+1. Copies the executable to `C:\Program Files\XamppMultidomainManager\`
+2. Creates a Start Menu shortcut
+3. Launches the installed version
+
+On subsequent runs, the app starts normally.
 
 ## Development
 
@@ -78,21 +124,12 @@ All operations run with full administrator privileges to allow writing to system
 - .NET 10.0 SDK
 - XAMPP installed at `C:\xampp`
 
-### Debugging (run.bat)
-The included `run.bat` script handles running the app with elevated privileges:
-
-```bat
-.\run.bat
-```
-
-It auto-elevates to Administrator (required for modifying `hosts` file and Apache config).
-
-### Build & Run
+### Debug
 ```bash
 dotnet run
 ```
 
-Or open `XamppMultidomainManager.csproj` in Visual Studio.
+Or open `XamppMultidomainManager.csproj` in Visual Studio and press F5.
 
 ## License
 
