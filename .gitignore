@@ -51,6 +51,7 @@ _ReSharper*/
 
 # Build output
 build/
+build-installable/
 
 # Generated files
 Generated\ Files/
