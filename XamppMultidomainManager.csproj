@@ -5,6 +5,7 @@
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>XamppMultidomainManager</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\icons\32px.ico</ApplicationIcon>
     <Platforms>x86;x64;ARM64</Platforms>
     <RuntimeIdentifier Condition="'$(RuntimeIdentifier)' == ''">win-$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant())</RuntimeIdentifier>
     <PublishProfile Condition="Exists('Properties\PublishProfiles\win-$(Platform).pubxml')">win-$(Platform).pubxml</PublishProfile>
@@ -30,6 +31,12 @@
     <Content Include="Assets\icons\64px.ico" />
     <Content Include="Assets\icons\96px.ico" />
     <Content Include="Assets\icons\256px.ico" />
+    <EmbeddedResource Include="Assets\icons\16px.ico" />
+    <EmbeddedResource Include="Assets\icons\32px.ico" />
+    <EmbeddedResource Include="Assets\icons\48px.ico" />
+    <EmbeddedResource Include="Assets\icons\64px.ico" />
+    <EmbeddedResource Include="Assets\icons\96px.ico" />
+    <EmbeddedResource Include="Assets\icons\256px.ico" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
 

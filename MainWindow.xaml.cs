@@ -6,7 +6,9 @@
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using XamppMultidomainManager.Pages;
+using XamppMultidomainManager.Services;
 
 namespace XamppMultidomainManager;
 
@@ -19,7 +21,8 @@ public sealed partial class MainWindow : Window
         ExtendsContentIntoTitleBar = true;
         SetTitleBar(AppTitleBar);
         AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
-        AppWindow.SetIcon("Assets/icons/32px.ico");
+        TitleBarIcon.ImageSource = new BitmapImage(new Uri(IconHelper.GetIconPath("Assets/icons/16px.ico")));
+        AppWindow.SetIcon(IconHelper.GetIconPath("Assets/icons/32px.ico"));
     }
 
     private void TitleBar_PaneToggleRequested(TitleBar sender, object args)

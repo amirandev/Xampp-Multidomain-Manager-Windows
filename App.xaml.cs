@@ -6,6 +6,8 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using XamppMultidomainManager.Pages;
 using XamppMultidomainManager.Services;
 
 namespace XamppMultidomainManager;
@@ -115,6 +117,17 @@ public partial class App : Application
 
     protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
+        if (!InstallPage.IsInstalled())
+        {
+            _window = new Window
+            {
+                Content = new InstallPage(),
+                Title = "Xampp Multidomain Manager — Install"
+            };
+            _window.Activate();
+            return;
+        }
+
         // Graceful stop first
         StopServices();
 

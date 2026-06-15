@@ -1,0 +1,50 @@
+<Page
+    x:Class="XamppMultidomainManager.Pages.InstallPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="24" MaxWidth="500">
+            <TextBlock Text="Xampp Multidomain Manager" Style="{StaticResource TitleTextBlockStyle}" TextAlignment="Center" />
+            <TextBlock Text="Powered By XROW.ASIA" Style="{StaticResource SubtitleTextBlockStyle}" TextAlignment="Center" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+
+            <Border Style="{StaticResource CardStyle}" Padding="32">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Welcome!" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        This application manages XAMPP virtual hosts, Apache/MySQL services,
+                        and local development domains through a modern Windows interface.
+                    </TextBlock>
+                    <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                        Before you begin, the application needs to be installed to your system.
+                        Click Install to copy it to Program Files and create shortcuts.
+                    </TextBlock>
+
+                    <Border Background="{ThemeResource CardBackgroundFillColorDefault}" Padding="12" CornerRadius="8">
+                        <StackPanel Spacing="4">
+                            <TextBlock FontWeight="SemiBold">Requirements</TextBlock>
+                            <TextBlock TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                • Windows 10 (1809+) or Windows 11&#x0a;
+                                • XAMPP latest version at C:\xampp
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+
+                    <Button x:Name="InstallBtn" Click="InstallBtn_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Center" MinWidth="200">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon x:Name="InstallBtnIcon" Glyph="&#xE8FB;" />
+                            <ProgressRing x:Name="InstallBtnRing" Width="16" Height="16" IsActive="False" Visibility="Collapsed" />
+                            <TextBlock x:Name="InstallBtnLabel" Text="Install" />
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock x:Name="StatusText" TextWrapping="WrapWholeWords" Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

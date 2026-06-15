@@ -32,7 +32,7 @@
             IsPaneToggleButtonVisible="True"
             PaneToggleRequested="TitleBar_PaneToggleRequested">
             <TitleBar.IconSource>
-                <ImageIconSource ImageSource="Assets/icons/16px.ico" />
+                <ImageIconSource x:Name="TitleBarIcon" />
             </TitleBar.IconSource>
         </TitleBar>
 
