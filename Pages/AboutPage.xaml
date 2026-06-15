@@ -17,17 +17,43 @@
     <ScrollViewer>
         <StackPanel Spacing="16" Padding="32">
             <TextBlock Text="About" Style="{StaticResource TitleTextBlockStyle}" />
+
             <Border Style="{StaticResource CardStyle}" MaxWidth="600">
                 <StackPanel Spacing="12">
                     <TextBlock Text="Xampp Multidomain Manager" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
                     <TextBlock Text="Version 1.0.0" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
                     <TextBlock TextWrapping="WrapWholeWords">
-                        A modern WinUI 3 application for managing XAMPP virtual hosts,
-                        Apache/MySQL services, and local development domains.
+                        A Windows desktop application that provides a graphical interface for managing multiple local domains (virtual hosts) on a XAMPP installation. No more manually editing Apache config files, hosts file, or MySQL databases — everything is handled through a clean WinUI 3 dashboard.
                     </TextBlock>
-                    <HyperlinkButton Content="GitHub" NavigateUri="https://github.com" />
+                    <HyperlinkButton Content="GitHub" NavigateUri="https://github.com/amirandev/Xampp-Multidomain-Manager-Windows" />
                 </StackPanel>
             </Border>
+
+            <Border Style="{StaticResource CardStyle}" MaxWidth="600">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Requirements" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        • Windows 10 (version 1809 or later) or Windows 11&#x0a;
+                        • XAMPP latest version installed at C:\xampp (Apache + MySQL)&#x0a;
+                        • .NET SDK 10.0 (for development/debugging)
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardStyle}" MaxWidth="600">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Tech Stack" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="SemiBold" />
+                    <TextBlock TextWrapping="WrapWholeWords">
+                        • UI Framework: WinUI 3 (Windows App SDK 2.2)&#x0a;
+                        • Language: C# with .NET 10&#x0a;
+                        • Architecture: MVVM pattern&#x0a;
+                        • Local Database: SQLite via Microsoft.Data.Sqlite&#x0a;
+                        • SSL: OpenSSL (bundled with XAMPP)&#x0a;
+                        • Packaging: MSIX (Windows App SDK)
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+
             <Border Style="{StaticResource CardStyle}" MaxWidth="600">
                 <StackPanel Spacing="8">
                     <TextBlock Text="Powered By" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
