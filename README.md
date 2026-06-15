@@ -2,6 +2,8 @@
 
 A Windows desktop application that provides a graphical interface for managing multiple local domains (virtual hosts) on a XAMPP installation. No more manually editing Apache config files, hosts file, or MySQL databases — everything is handled through a clean WinUI 3 dashboard.
 
+<img width="1162" height="595" alt="image" src="https://github.com/user-attachments/assets/2bb3a44c-c615-4457-8f22-a0d738d43e89" />
+
 ## Requirements
 
 - **Windows 10** (version 1809 or later) or **Windows 11**
@@ -25,6 +27,7 @@ A Windows desktop application that provides a graphical interface for managing m
 - Creates self-signed SSL certificates for HTTPS support
 - Manages Windows `hosts` file entries
 - Open domain in browser or document root in Explorer
+<img width="1157" height="597" alt="image" src="https://github.com/user-attachments/assets/3c4d1921-f9eb-41c4-a046-7b9e0d358c2a" />
 
 ### Databases
 - List all MySQL databases
@@ -32,10 +35,14 @@ A Windows desktop application that provides a graphical interface for managing m
 - Delete databases with confirmation
 - Open phpMyAdmin globally or deep-linked to a specific database
 - MySQL user management
+<img width="1152" height="600" alt="image" src="https://github.com/user-attachments/assets/42615002-c8f5-41be-967d-68001f4d86ae" />
+
 
 ### PHP Ini Editor
 - Load, edit, and save `php.ini` directly from the app
 - Reload from disk and save with admin privileges
+<img width="1156" height="600" alt="image" src="https://github.com/user-attachments/assets/43267576-7d07-49da-92c4-19b20684abf6" />
+
 
 ### Settings
 - Verify XAMPP installation path
