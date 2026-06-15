@@ -70,6 +70,15 @@ public sealed partial class DomainsPage : Page
     private void LoadHosts()
     {
         var hosts = _dbService.GetAllHosts();
+        if (hosts.Count == 0)
+        {
+            var existing = _vhostService.ParseExistingVhostsConfig();
+            if (existing.Count > 0)
+            {
+                _dbService.ImportHosts(existing);
+                hosts = _dbService.GetAllHosts();
+            }
+        }
         HostsList.ItemsSource = hosts;
         EmptyState.Visibility = hosts.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
     }

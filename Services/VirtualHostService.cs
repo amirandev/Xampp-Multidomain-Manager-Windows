@@ -361,6 +361,58 @@ public class VirtualHostService
         sb.AppendLine("</VirtualHost>");
     }
 
+    public List<VirtualHost> ParseExistingVhostsConfig()
+    {
+        var hosts = new List<VirtualHost>();
+        var vhostsPath = Path.Combine(XamppPath, "apache", "conf", "extra", "httpd-vhosts.conf");
+        if (!File.Exists(vhostsPath))
+            return hosts;
+
+        var lines = File.ReadAllLines(vhostsPath);
+        string? currentServerName = null;
+        string? currentRoot = null;
+        string? currentAlias = null;
+
+        foreach (var line in lines)
+        {
+            var trimmed = line.Trim();
+
+            if (trimmed.StartsWith("ServerName ", StringComparison.OrdinalIgnoreCase))
+            {
+                currentServerName = trimmed["ServerName ".Length..].Trim().Trim('"');
+            }
+            else if (trimmed.StartsWith("DocumentRoot ", StringComparison.OrdinalIgnoreCase))
+            {
+                currentRoot = trimmed["DocumentRoot ".Length..].Trim().Trim('"');
+            }
+            else if (trimmed.StartsWith("ServerAlias ", StringComparison.OrdinalIgnoreCase))
+            {
+                currentAlias = trimmed["ServerAlias ".Length..].Trim().Trim('"');
+            }
+            else if (trimmed == "</VirtualHost>")
+            {
+                if (currentServerName != null && currentRoot != null &&
+                    !currentServerName.Equals("localhost", StringComparison.OrdinalIgnoreCase))
+                {
+                    hosts.Add(new VirtualHost
+                    {
+                        DomainName = currentServerName,
+                        DocumentRoot = currentRoot.Replace('/', '\\'),
+                        ServerAlias = currentAlias,
+                        Enabled = true,
+                        CreatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        UpdatedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+                    });
+                }
+                currentServerName = null;
+                currentRoot = null;
+                currentAlias = null;
+            }
+        }
+
+        return hosts;
+    }
+
     public async Task RemoveHostFromConfig(string domain)
     {
         var vhostsPath = Path.Combine(XamppPath, "apache", "conf", "extra", "httpd-vhosts.conf");

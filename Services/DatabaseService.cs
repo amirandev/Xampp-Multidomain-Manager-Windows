@@ -93,6 +93,32 @@ public class DatabaseService
         return null;
     }
 
+    public void ImportHosts(List<VirtualHost> hosts)
+    {
+        using var connection = new SqliteConnection(_connectionString);
+        connection.Open();
+
+        foreach (var host in hosts)
+        {
+            var existing = GetHostByDomain(host.DomainName);
+            if (existing != null)
+                continue;
+
+            var cmd = connection.CreateCommand();
+            cmd.CommandText = """
+                INSERT OR IGNORE INTO VirtualHosts (DomainName, DocumentRoot, ServerAlias, Enabled, CreatedAt, UpdatedAt)
+                VALUES (@domain, @root, @alias, @enabled, @created, @updated)
+                """;
+            cmd.Parameters.AddWithValue("@domain", host.DomainName);
+            cmd.Parameters.AddWithValue("@root", host.DocumentRoot);
+            cmd.Parameters.AddWithValue("@alias", (object?)host.ServerAlias ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@enabled", host.Enabled ? 1 : 0);
+            cmd.Parameters.AddWithValue("@created", host.CreatedAt);
+            cmd.Parameters.AddWithValue("@updated", host.UpdatedAt);
+            cmd.ExecuteNonQuery();
+        }
+    }
+
     public void AddHost(VirtualHost host)
     {
         using var connection = new SqliteConnection(_connectionString);
