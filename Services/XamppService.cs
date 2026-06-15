@@ -54,8 +54,37 @@ public class XamppService
 
     public async Task<(bool Success, string Message)> StartApache() =>
         await StartBat(Path.Combine(XamppPath, "apache_start.bat"), "Apache");
-    public async Task<(bool Success, string Message)> StopApache() =>
-        await RunExe(Path.Combine(XamppPath, "apache", "bin", "httpd.exe"), "-k shutdown", "Apache", 10000);
+    public async Task<(bool Success, string Message)> StopApache()
+    {
+        if (GetServiceStatus("Apache2.4"))
+        {
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "net",
+                    Arguments = "stop Apache2.4",
+                    UseShellExecute = false,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                };
+                using var process = new Process { StartInfo = psi };
+                process.Start();
+                var error = await process.StandardError.ReadToEndAsync();
+                process.WaitForExit(10000);
+                if (process.ExitCode != 0)
+                    return (false, $"Apache service stop failed: {error.Trim()}");
+                await Task.Delay(2000);
+                return (true, "Apache service stopped");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Failed to stop Apache service: {ex.Message}");
+            }
+        }
+        return await RunExe(Path.Combine(XamppPath, "apache", "bin", "httpd.exe"), "-k shutdown", "Apache", 10000);
+    }
     public async Task<(bool Success, string Message)> StartMySql() =>
         await StartBat(Path.Combine(XamppPath, "mysql_start.bat"), "MySQL");
     public async Task<(bool Success, string Message)> StopMySql() =>
