@@ -1,11 +1,8 @@
-<img width="1450" height="751" alt="image" src="https://github.com/user-attachments/assets/f5db6b29-ae34-4c76-a8c8-1d0615ff6c8a" />
-
 # Xampp Multidomain Manager
 
-**Powered By XROW.ASIA**  
-Real Life Solutions for IT World
-
 A Windows desktop application that provides a graphical interface for managing multiple local domains (virtual hosts) on a XAMPP installation. No more manually editing Apache config files, hosts file, or MySQL databases — everything is handled through a clean WinUI 3 dashboard.
+
+<img width="1450" height="751" alt="image" src="https://github.com/user-attachments/assets/f5db6b29-ae34-4c76-a8c8-1d0615ff6c8a" />
 
 ## Requirements
 
