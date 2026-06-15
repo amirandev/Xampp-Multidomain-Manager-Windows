@@ -49,6 +49,9 @@ _ReSharper*/
 *.dotCover
 .idea/
 
+# Build output
+build/
+
 # Generated files
 Generated\ Files/
 *_wpftmp.csproj
